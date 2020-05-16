@@ -1,6 +1,5 @@
 'use strict';
 
-const multer = require('multer');
 const fs = require('fs');
 const router = require('express').Router();
 
@@ -33,7 +32,7 @@ function Files(db, auth, bucket=null, options={
     authorizeHandler = options.isAuthorized;
   }
 
-  const uploader = multer({"dest":temp, "limits":{"fileSize":limit}});
+  const uploader = require('./upload');
 
   const cloudSave = async (file, filename, isPublic=true) => {
     return bucket.upload(file, {
@@ -110,7 +109,8 @@ function Files(db, auth, bucket=null, options={
 
   const Upload = () => {
     return (req, res, next) => {
-      uploader.single(fieldName)(req, res, async (err)=> {
+        uploader()(req, res, async(err)=>{
+
         if (err) {
           return res.json({"code":400,"message":err.message||err.toString()||"Error"});
         }
