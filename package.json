@@ -1,8 +1,9 @@
 {
   "name": "@starbase/files",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Starbase Files",
   "main": "index.js",
+  "browser":"files.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
