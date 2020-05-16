@@ -1,9 +1,9 @@
 {
   "name": "@starbase/files",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Starbase Files",
   "main": "index.js",
-  "browser":"files.min.js",
+  "browser": "files.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
@@ -29,7 +29,7 @@
   "homepage": "https://github.com/starbasealpha/files#readme",
   "dependencies": {
     "@google-cloud/storage": "^5.0.0",
-    "express": "^4.17.1",
-    "multer": "^1.4.2"
+    "busboy": "^0.3.1",
+    "express": "^4.17.1"
   }
 }
