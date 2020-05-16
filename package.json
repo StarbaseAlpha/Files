@@ -1,6 +1,6 @@
 {
   "name": "@starbase/files",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Starbase Files",
   "main": "index.js",
   "browser": "files.min.js",
