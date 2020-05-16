@@ -1,12 +1,11 @@
 'use strict';
 
 const fs = require('fs');
+const os = require('os');
 const router = require('express').Router();
 
 function Files(db, auth, bucket=null, options={
   "destination":"uploads",
-  "temp":"/tmp",
-  "fieldName":"file",
   "dbPath":"files",
   "limit":1024 * 1024 * 5,
   "userspace":false,
@@ -15,10 +14,9 @@ function Files(db, auth, bucket=null, options={
   "adminUser":"admin"
   }) {
   
-  const fieldName = options.fieldName || "file";
   const limit = options.limit || 1024 * 1024 * 5;
   const destination = options.destination || "uploads";
-  const temp = options.temp || "/tmp";
+  const temp = os.tmpdir();
   const dbPath = options.dbPath || "files";
   const url = options.url || null;
   const adminUser = options.adminUser || 'admin';
@@ -109,7 +107,7 @@ function Files(db, auth, bucket=null, options={
 
   const Upload = () => {
     return (req, res, next) => {
-        uploader()(req, res, async(err)=>{
+        uploader(limit)(req, res, async(err)=>{
 
         if (err) {
           return res.json({"code":400,"message":err.message||err.toString()||"Error"});
@@ -170,7 +168,7 @@ function Files(db, auth, bucket=null, options={
     };
   };
 
-  router.use('/upload', Upload());
+  router.post('/upload', Upload());
   router.use('/remove', Remove());
   router.use('/meta', Meta());
   router.use('/list', List());

@@ -4,9 +4,9 @@ const os = require('os');
 const path = require('path');
 const Busboy = require('busboy');
 
-function Upload() {
+function Upload(limit) {
   return (req, res, next) => {
-    var busboy = new Busboy({"headers": req.headers, "limits":{"fileSize":1024 * 1024 * 5}});
+    var busboy = new Busboy({"headers": req.headers, "limits":{"fileSize":limit}});
     busboy.on('field', (fieldname, val) => {
       req.body[fieldname] = val;
     });
