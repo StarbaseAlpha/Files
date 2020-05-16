@@ -52,7 +52,11 @@ function Upload(limit) {
       }
     });
 
-    return req.pipe(busboy);
+    if (req.rawBody) {
+      busboy.end(req.rawBody);
+    } else {
+      return req.pipe(busboy);
+    }
 
   };
 }
