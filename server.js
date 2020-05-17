@@ -85,7 +85,7 @@ function Files(db, auth, bucket=null, options={
           }
           next();
         } else {
-          res.status(400).json({"code":403,"message":"Forbidden"});
+          res.status(403).json({"code":403,"message":"Forbidden"});
         }
     };
   };
@@ -100,7 +100,7 @@ function Files(db, auth, bucket=null, options={
           }
           next();
         } else {
-          res.status(400).json({"code":403,"message":"Forbidden"});
+          res.status(403).json({"code":403,"message":"Forbidden"});
         }
     };
   };
@@ -141,7 +141,7 @@ function Files(db, auth, bucket=null, options={
           if (req.file) {
             await fs.unlink(temp + '/' + req.file.filename, async()=>{return true;});
           }
-          res.status(400).json({"code":403,"message":"Forbidden"});
+          res.status(403).json({"code":403,"message":"Forbidden"});
         }
       });
     };
@@ -163,15 +163,15 @@ function Files(db, auth, bucket=null, options={
           if (req.file) {
             await fs.unlink(temp + '/' + req.file.filename, async()=>{return true;});
           }
-          res.status(400).json({"code":403,"message":"Forbidden"});
+          res.status(403).json({"code":403,"message":"Forbidden"});
         }
     };
   };
 
   router.post('/upload', Upload());
-  router.use('/remove', Remove());
-  router.use('/meta', Meta());
-  router.use('/list', List());
+  router.post('/remove', Remove());
+  router.post('/meta', Meta());
+  router.post('/list', List());
 
   const express = () => {
     return router;
