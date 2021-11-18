@@ -1,6 +1,6 @@
 {
   "name": "@starbase/files",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "Starbase Files",
   "main": "index.js",
   "browser": "files.min.js",
@@ -28,8 +28,8 @@
   },
   "homepage": "https://github.com/starbasealpha/files#readme",
   "dependencies": {
-    "@google-cloud/storage": "^5.0.0",
-    "busboy": "^0.3.1",
-    "express": "^4.17.1"
+    "@google-cloud/storage": "latest",
+    "busboy": "latest",
+    "express": "latest"
   }
 }
